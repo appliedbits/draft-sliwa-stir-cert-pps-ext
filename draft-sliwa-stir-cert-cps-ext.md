@@ -6,7 +6,7 @@ title: "Call Placement Service (CPS) URI Certificate Extension for STI Certifica
 abbrev: "CPS URI Certificate Extension"
 category: std
 
-docname: draft-sliwa-stir-cert-cps-ext-01
+docname: draft-sliwa-stir-cert-cps-ext-02
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
@@ -44,7 +44,8 @@ normative:
   RFC8226:
   RFC8816:
   RFC9060:
-  I-D.wendt-stir-certificate-transparency:
+  I-D.ietf-stir-certificate-transparency:
+  I-D.ietf-stir-servprovider-oob:
   X.509:    
     title: "Information technology - Open Systems Interconnection - The Directory: Public-key and attribute certificate frameworks"
     author: 
@@ -96,7 +97,7 @@ This document specifies a non-critical X.509 v3 certificate extension that conve
 
 The STIR (Secure Telephone Identity Revisited) framework provides a means of cryptographically asserting the identity of the calling party in a telephone call by using PASSporTs carried in SIP requests, as defined in {{RFC8224}} and {{RFC8225}}. To support deployment in environments where SIP Identity headers may be removed or are not end-to-end transmittable, such as in non-IP or hybrid telephony networks, the STIR Out-of-Band (OOB) mechanism was introduced in {{RFC8816}}. In OOB scenarios, PASSporTs are published to a Call Placement Service (CPS) where they may be retrieved independently of the SIP signaling path.
 
-To enable discovery of the appropriate CPS for a given telephone number or SPC, this document defines a certificate extension that binds a CPS URI to the identity resources listed in the TNAuthList of the STI certificate. This CPS URI extension provides a verifiable association between a number resource and its corresponding CPS, enabling relying parties to discover CPS endpoints by observing STI Certificate Transparency (STI-CT) logs defined in {{I-D.wendt-stir-certificate-transparency}}.
+To enable discovery of the appropriate CPS for a given telephone number or SPC, this document defines a certificate extension that binds a CPS URI to the identity resources listed in the TNAuthList of the STI certificate. This CPS URI extension provides a verifiable association between a number resource and its corresponding CPS, enabling relying parties to discover CPS endpoints by observing STI Certificate Transparency (STI-CT) logs defined in {{I-D.ietf-stir-certificate-transparency}}.
 
 This specification defines the syntax and semantics of the CPS URI certificate extension, describes how it is encoded in {{X.509}} certificates also defined in {{RFC5280}}, and outlines validation procedures for Certification Authorities and relying parties. This extension is intended to be used in conjunction with existing STIR certificates defined in {{RFC8226}} and delegate certificates defined in {{RFC9060}} infrastructure, and supports enhanced transparency and automation in OOB PASSporT routing.
 
@@ -104,12 +105,9 @@ This specification defines the syntax and semantics of the CPS URI certificate e
 
 This document defines the certificate extension data format for embedding CPS URIs in STIR certificates. It is designed to work within the broader STIR Out of Band ecosystem as follows:
 
-- RFC 8816 defines the OOB architecture and the CPS concept.
-- draft-ietf-stir-servprovider-oob describes a service-provider-specific OOB deployment model and identifies, in its Section 4, the possibility of embedding CPS information directly in STIR certificates. This document provides the concrete specification for that approach.
-- draft-wendt-stir-certificate-transparency defines STI Certificate Transparency logs that can be used to publish and discover certificates containing this extension.
-- draft-sliwa-stir-oob-transparent-discovery defines one discovery mechanism built on CT log monitoring that consumes this extension.
-
-This extension is not dependent on any particular discovery mechanism. Relying parties may obtain certificates containing this extension through in-band PASSporT verification (via the x5u parameter), bilateral provisioning, CT log monitoring, or future discovery mechanisms not yet specified.
+- {{RFC8816}} defines the OOB architecture and the CPS concept.
+- {{I-D.ietf-stir-servprovider-oob}} describes a service-provider-specific OOB deployment model and identifies, in its Section 4, the possibility of embedding CPS information directly in STIR certificates. This document also defines a discovery mechanism built on CT log monitoring that consumes this extension.
+- {{I-D.ietf-stir-certificate-transparency}} defines STI Certificate Transparency logs that can be used to publish and discover certificates containing this extension.
 
 # Conventions and Definitions
 
@@ -246,11 +244,7 @@ IANA is requested to assign a new object identifier (OID) for the CPS URI certif
 - Name: id-pe-oobURI
 - OID: to be assigned
 - Description: Certificate extension for specifying a Call Placement Service (CPS) URI for STIR Out-of-Band PASSporTs
-- Reference: This document
-
-# References
-
-[I-D.ietf-stir-servprovider-oob] Peterson, J., "Out-of-Band STIR for Service Providers", Work in Progress, Internet-Draft, draft-ietf-stir-servprovider-oob-08, 7 July 2025
+- Reference: [RFC THIS]
 
 --- back
 

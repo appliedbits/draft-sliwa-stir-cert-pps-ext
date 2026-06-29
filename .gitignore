@@ -21,3 +21,9 @@ package-lock.json
 report.xml
 !requirements.txt
 build.sh
+draft-wendt-stir-cert-tn-attr-ext.xml
+draft-wendt-stir-cert-tn-attr-ext.txt
+draft-wendt-stir-cert-tn-attr-ext.code*
+draft-wendt-stir-cert-tn-attr-ext-0*
+draft-wendt-stir-cert-tn-attr-ext-1*
+*_proposed.md
